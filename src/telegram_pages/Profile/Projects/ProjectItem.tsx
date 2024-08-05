@@ -2,7 +2,13 @@
 
 
 import { CyberBlockStick } from '@/components/Referral/OpenReferral'
+import { Modal } from '@/context/modals/Modal/TGModal'
 import tg_icon from '@assets/projects/telegram_icon.svg'
+
+import modal_bg1 from '@tg/Profile/modal_bg.png'
+import modal_bg2 from '@tg/Profile/modal_bg2.png'
+import badges0 from '@tg/Profile/badges0.png'
+import badges1 from '@tg/Profile/badges1.png'
 
 import { useState } from 'react'
 
@@ -26,39 +32,41 @@ const ProjectItem = (
 		color,
 		statusProp = 'connected',
 		isFullMode = false
-	} : ProjectItemProps
+	}: ProjectItemProps
 ) => {
 	const [status, setStatus] = useState(statusProp)
+	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	return (
-		<div 
-			className='h-full relative rounded-lg bg-[#1B1E20] overflow-clip z-10 min-h-[220px] ' 
-			// style={{background: `url(${bg_img}) right no-repeat, #1B1E20`, backgroundSize: 'contain'}}
+		<div
+			className='h-full relative rounded-lg bg-[#1B1E20] overflow-clip z-10 min-h-[220px] cursor-pointer '
+			onClick={() => setIsModalOpen(true)}
+		// style={{background: `url(${bg_img}) right no-repeat, #1B1E20`, backgroundSize: 'contain'}}
 		>
-			{(status === "connected" || status === "disconnected") &&  
-			<>
-			<div className="p-4 flex justify-start items-center gap-3 z-20">
-				<div className="bg-[#020F1B] size-12 rounded-[16px] flex justify-center items-center ">
-					<img src={icon_img} alt="" className="" />
-				</div>
-				<h3 className="text-2xl font-bold text-white whitespace-nowrap">{title}</h3>
-			</div>
-			<img src={bg_img} alt="" className="absolute right-0 top-0 -z-10"  />
-			<div className="absolute -right-1 top-1/2 -translate-y-1/2 size-1 -z-20 " style={{
-				boxShadow: '0px 0px 250px 120px ' + color,
-			}}></div>
-			</>}
+			{(status === "connected" || status === "disconnected") &&
+				<>
+					<div className="p-4 flex justify-start items-center gap-3 z-20">
+						<div className="bg-[#020F1B] size-12 rounded-[16px] flex justify-center items-center ">
+							<img src={icon_img} alt="" className="" />
+						</div>
+						<h3 className="text-2xl font-bold text-white whitespace-nowrap">{title}</h3>
+					</div>
+					<img src={bg_img} alt="" className="absolute right-0 top-0 -z-10" />
+					<div className="absolute -right-1 top-1/2 -translate-y-1/2 size-1 -z-20 " style={{
+						boxShadow: '0px 0px 250px 120px ' + color,
+					}}></div>
+				</>}
 			{status === "comming soon" && <img src={bg_img} alt="" className="absolute left-0 right-0 top-0 bottom-0 w-full " />}
 
 			<div className="absolute bottom-0 left-0 right-0">
 				<CyberBlock shadowColor={color} className={cn('flex gap-2 pb-2  items-center  ', isFullMode ? "justify-start" : "justify-center")} isFullMode={isFullMode}>
 					{(status === "connected" || status === "disconnected") && <img src={tg_icon} alt="" className="" />}
-					<p 
+					<p
 						className="font-bold uppercase"
 						style={
-							status === "connected" ? {textShadow: '0px 0px 10px #C3FF48', color: '#C3FF48'} :
-							status === "disconnected" ? {textShadow: '0px 0px 10px #FF6262', color: '#FF6262'} :
-							{textShadow: '0px 0px 10px #FFF83C', color: '#FFF83C'}
+							status === "connected" ? { textShadow: '0px 0px 10px #C3FF48', color: '#C3FF48' } :
+								status === "disconnected" ? { textShadow: '0px 0px 10px #FF6262', color: '#FF6262' } :
+									{ textShadow: '0px 0px 10px #FFF83C', color: '#FFF83C' }
 						}
 					>[ {status} ]</p>
 					{status === "connected" && <div className="flex flex-col gap-[2px] items-center justify-center bg-[#282B2C] rounded-md size-6">
@@ -68,11 +76,25 @@ const ProjectItem = (
 					</div>}
 				</CyberBlock>
 			</div>
+
+			{(title === "Runner2060" || title === "Hex Planet") && <Modal open={isModalOpen} setOpen={setIsModalOpen} borderColor='#FFF83C'>
+				<div className="text-center">
+					<img src={title === 'Runner2060' ? modal_bg1 : modal_bg2} alt="" className="" />
+					<h3 className=" mb-[5px] mt-[25px] text-[19px] font-bold text-center">{title}</h3>
+					<p className="text-xs text-grey mb-[25px]">
+					{title === 'Runner2060' ? 'Dive into the futuristic neon-world' : 'Imagine the world so close, but so far from ours. Corporations gained unlimited power, and crime became the new standard.'} 
+					</p>
+					<div className="flex mx-auto justify-between">
+						<img src={badges0} alt="" className="" />
+						<img src={badges1} alt="" className="" />
+					</div>
+				</div>
+			</Modal>}
 		</div>
 	)
 }
 
-const CyberBlock = ({ children, className, shadowColor: stickColor, isFullMode }: {shadowColor?:string, isFullMode?:boolean}& React.HTMLAttributes<HTMLDivElement>) => {
+const CyberBlock = ({ children, className, shadowColor: stickColor, isFullMode }: { shadowColor?: string, isFullMode?: boolean } & React.HTMLAttributes<HTMLDivElement>) => {
 	return (
 		<div className="relative h-min w-full">
 

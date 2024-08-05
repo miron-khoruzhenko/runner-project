@@ -8,6 +8,17 @@ import { useContractStore } from "@/stores/useContractStore";
 
 import { twMerge as cn } from "tailwind-merge";
 
+import box_diamond from "@tg/Home/box_diamond.png"
+import box_gold from "@tg/Home/box_gold.png"
+// import box_platinum from "@tg/Home/box_platinum.png"
+
+import modal_bg_diamond from '@tg/Profile/assets_modal_bgs/diamond.png'
+import modal_bg_factory from '@tg/Profile/assets_modal_bgs/factory.png'
+import modal_bg_bar from '@tg/Profile/assets_modal_bgs/bar.png'
+
+import { Modal } from "@/context/modals/Modal/TGModal";
+import CyberButton from "@/components/telegram/CyberComponents";
+
 interface ListProps {
   isMintable?: boolean;
   items: Item[];
@@ -28,6 +39,8 @@ export interface Item {
 interface FakeDBItem {
   index: number;
   name: string;
+  modal_bg?: string;
+  modal_descr?: string;
   type: string;
   img: string;
 }
@@ -36,38 +49,48 @@ const fakeDB: { [key: string]: FakeDBItem[] } = {
   "Buildings": [
     {
       index: 0,
-      name: "CM Tower",
-      type: "Morph",
-      img: '/buildings/img1.png',
+      name: "Diamond BP",
+      modal_bg: modal_bg_diamond,
+      modal_descr: '#986535 / TON',
+      type: "TON",
+      img: box_diamond,
     },
     {
       index: 1,
-      name: "Casino",
-      type: "Linea",
-      img: '/buildings/img2.png',
+      name: "Gold BP",
+      type: "TON",
+      img: box_gold,
     },
     {
-      index: 0,
-      name: "CM Tower",
+      index: 2,
+      name: "Factory",
+      modal_bg: modal_bg_factory,
+      modal_descr: '',
       type: "Linea",
-      img: '/buildings/img1.png',
+      img: '/factory.png',
     },
     {
-      index: 0,
+      index: 3,
       name: "Bar",
+      modal_bg: modal_bg_bar,
+      modal_descr: 'To make a mint asset, go to the website',
       type: "Scroll",
       img: '/buildings/img3.png',
     },
     {
-      index: 0,
-      name: "CM Tower",
-      type: "X Layer",
-      img: '/buildings/img4.png',
+      index: 4,
+      name: "Factory",
+      modal_bg: modal_bg_factory,
+      modal_descr: '',
+      type: "Linea",
+      img: '/factory.png',
     },
     {
-      index: 0,
-      name: "CM Tower",
-      type: "X Layer",
+      index: 5,
+      name: "Diamond BP",
+      modal_bg: modal_bg_diamond,
+      modal_descr: '#986535 / TON',
+      type: "Gold BP",
       img: '/buildings/img1.png',
     },
   ],
@@ -136,6 +159,7 @@ const List = ({ title, items, isMintable = false, color }: ListProps) => {
       <div className="w-full text-[#00FFD3] flex flex-col gap-3">
         <div className="flex gap-6 items-center">
           <div className="flex gap-1 ">
+
             <img onClick={() => setHidden((prev) => !prev)} className={hidden ? "transform rotate-180" : ''} src="/arrow-down.svg" alt="" width={24} height={24} />
             <p className="whitespace-nowrap text-bold text-basic">{title}</p>
 
@@ -167,7 +191,7 @@ export const Rewards = () => {
   const [items, setItems] = useState<Item[]>([]);
   const { openModal } = useModal();
   const [activeCategory, setActiveCategory] = useState("Buildings");
-
+  const [openModalIdx, setOpenModalIdx] = useState(-1)
 
   useEffect(() => {
     const getItems = async () => {
@@ -229,7 +253,7 @@ export const Rewards = () => {
 
   return (
     <div className="p-4 w-full bg-[#1B1E20] rounded-lg">
-      <h2 className="text-white font-bold text-2xl flex lg:block justify-between items-center">Rewards
+      <h2 className="text-white font-bold text-2xl flex lg:block justify-between items-center">My assets
         {/* <span className="text-sm text-yellow inline lg:hidden">[ MINT ALL ]</span> */}
       </h2>
       <div className="mt-4 flex-col gap-6 mb-1 hidden lg:flex">
@@ -253,15 +277,34 @@ export const Rewards = () => {
 
         {/* <div className="grid grid-cols-3 gap-3 overflow-x-scroll"> */}
         <div className="grid grid-flow-col auto-cols-max grid-rows-2 gap-3 overflow-x-auto mt-4">
-          {fakeDB[activeCategory].map((item, index) => (
-            <div key={item.index} className="size-[120px] bg-[#282B2C] relative selection:rounded-lg flex flex-col justify-center items-center">
-              <img src={item.img} alt={item.name} className="size-16"/>
-              <p className="text-white text-sm">{item.name}</p>
-              <p className="text-[#A3AED0] text-[10px]">{item.type}</p>
-              
-              <div className="border-8 border-[#1B1E20] border-t-[#282B2C] border-r-[#282B2C] absolute left-0 bottom-0 size-4"></div>
-            </div>
-          ))}
+          {fakeDB[activeCategory].map((item, index) => {
+            return (
+
+              <div key={item.index} onClick={() => setOpenModalIdx(index)} className="cursor-pointer size-[120px] bg-[#282B2C] relative selection:rounded-lg flex flex-col justify-center items-center">
+                <div className="size-16 mb-2 aspect-square bg-gradient-to-b from-black/0 to-secondaryZinc/100 rounded-[10px] overflow-hidden">
+                  <img src={item.img} alt={item.name} className="min-h-full min-w-full object-cover" />
+                </div>
+                <p className="text-white text-sm">{item.name}</p>
+                <p className="text-[#A3AED0] text-[10px]">{item.type}</p>
+
+                <div className="border-8 border-[#1B1E20] border-t-[#282B2C] border-r-[#282B2C] absolute left-0 bottom-0 size-4"></div>
+                <Modal open={index === openModalIdx} setOpen={(val) => setOpenModalIdx(val ? index : -1)}>
+                  <div className="text-center">
+                    <div className="max-h-[180px] overflow-hidden mb-[25px] bg-primaryZinc">
+                      <img src={item.modal_bg || item.img} alt="" className="object-contain max-w-full max-h-full" />
+                    </div>
+                    <h3 className="text-[19px] font-bold mb-[5px]">{item.name.replace('BP', "Battle Pass")}</h3>
+                    <p className="text-grey text-sm mb-[25px]">{item.modal_descr || item.type}</p>
+
+                    <a href="www.somelink.com" className="">
+                      <CyberButton title="[ go to website ]" className="uppercase p-[15px] bg-black text-sm" />
+                    </a>
+                  </div>
+                </Modal>
+              </div>
+            )
+
+          })}
         </div>
       </div>
     </div>

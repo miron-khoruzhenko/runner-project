@@ -25,7 +25,7 @@ const TelegramBoxesPage = () => {
 	const [confirm, setConfirm] = useState(false)
 
 	//DOC: DEV
-	const [modalType, setModalType] = useState(1)
+	const [modalType, setModalType] = useState(0)
 
 
 	const location = useLocation()
