@@ -1,0 +1,82 @@
+
+.drop-shadow-reward {
+  filter: drop-shadow(0px 0px 6px #fb4cfb) drop-shadow(4px 8px 0px #ff4dff);
+}
+
+.gradient-modal-image {
+  background: linear-gradient(0deg, rgba(2, 15, 27, 0.4), rgba(2, 15, 27, 0.4)),
+    linear-gradient(
+      180deg,
+      rgba(190, 255, 58, 0.16) 0%,
+      rgba(2, 15, 27, 0.48) 39.5%,
+      rgba(2, 15, 27, 0.48) 63.5%,
+      rgba(190, 255, 58, 0.16) 99%
+    );
+}
+
+.modal-text-shadow-success {
+  text-shadow: 0px 0px 12px #abff00;
+  text-shadow: 0px 12px 12px rgba(171, 255, 0, 0.25) inset;
+}
+
+.modal-text-shadow-error {
+  text-shadow: 0px 0px 12px #ff4545;
+  text-shadow: 0px 12px 12px rgba(255, 0, 0, 0.25) inset;
+}
+
+.border-modal-success {
+  border-color: #c3ff48;
+}
+
+.border-modal-error {
+  border-color: #ff6262;
+}
+
+.modal-text-success {
+  color: #c3ff48;
+}
+
+.modal-text-error {
+  color: #ff6262;
+}
+
+.mintable-shadow {
+  background: linear-gradient(180deg, rgba(27, 30, 32, 0) 58.98%, #1b1e20 100%);
+}
+
+.asset-shadow {
+  background: linear-gradient(180deg, #282b2c 0%, #1b1e20 100%);
+}
+
+.notification-shadow {
+  text-shadow: 0px 4px 4px #fff60040;
+  text-shadow:
+    0px 4px 4px rgba(255, 246, 0, 0.25),
+    0px -4px 4px rgba(255, 246, 0, 0.25);
+}
+.blur {
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.no-blur {
+  position: relative;
+  z-index: 10;
+  filter: none;
+  pointer-events: auto;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 100%;
+  margin-bottom: 15px;
+  height: 14px;
+  background: repeating-linear-gradient(-45deg, white 0 15px, #0000 0 20px)
+    right/200% 100%;
+  animation: l3 20s infinite linear;
+}
+@keyframes l3 {
+  100% {
+    background-position: left;
+  }
+}
