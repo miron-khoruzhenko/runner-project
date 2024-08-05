@@ -22,7 +22,7 @@ import TelegramProfile from './telegram_pages/Profile';
 const queryClient = new QueryClient();
 
 const AppWrapper = () => {
-  const [isTelegram, setIsTelegram] = useState<boolean>(true);
+  const [isTelegram, setIsTelegram] = useState<boolean>(false);
 
   if (isTelegram) {
     return (

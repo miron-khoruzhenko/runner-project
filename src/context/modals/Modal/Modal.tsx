@@ -36,7 +36,7 @@ export function Modal(props: ModalProps) {
           <div className="fixed inset-0 bg-black/80 bg-opacity-75 transition-opacity" />
         </TransitionChild>
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex min-h-full items-center lg:items-end justify-center p-8 text-center sm:items-center sm:p-0">
+          <div className="flex min-h-full items-center lg:items-center justify-center p-8 text-center sm:items-center sm:p-0">
             <TransitionChild
               enter="ease-out duration-300"
               enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
