@@ -25,9 +25,11 @@ const AppWrapper = () => {
   const [isTelegram, setIsTelegram] = useState<boolean>(false);
 
 	const [activeWallet, setActiveWallet] = useState('')
+  
 
 
-  if (isTelegram) {
+  // if (isTelegram) {
+    if (window.location.pathname.includes('/tg/')) {
     return (
       <div className="bg-background min-h-screen overflow-x-hidden">
         <Routes>
@@ -54,14 +56,6 @@ const AppWrapper = () => {
           <Routes>
             <Route path="/" element={<MainPage activeWallet={activeWallet} />} />
             <Route path="/rank" element={<Rank />} />
-            <Route path="/tg/" element={<TelegramHome />} />
-            <Route path="/tg/box/:id" element={<TelegramBoxesPage />} />
-            <Route path="/tg/confirm/:type" element={<TelegramConfirmPage />} />
-            <Route path="/tg/rank" element={<TelegramRanking />} />
-            <Route path="/tg/referral" element={<TelegramReferral />} />
-            <Route path="/tg/tasks" element={<TelegramMissions />} />
-            <Route path="/tg/profile" element={<TelegramProfile />} />
-
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

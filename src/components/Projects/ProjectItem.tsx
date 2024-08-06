@@ -29,7 +29,7 @@ const ProjectItem = (
 
 	return (
 		<div 
-			className='h-full relative rounded-lg bg-[#1B1E20] overflow-clip z-10 min-h-[220px] ' 
+			className='h-full relative rounded-lg bg-[#1B1E20] overflow-clip z-10 min-h-[220px] min-w-[247px] ' 
 			// style={{background: `url(${bg_img}) right no-repeat, #1B1E20`, backgroundSize: 'contain'}}
 		>
 			{(status === "connected" || status === "disconnected") &&  
@@ -45,7 +45,7 @@ const ProjectItem = (
 				boxShadow: '0px 0px 250px 120px ' + color,
 			}}></div>
 			</>}
-			{status === "comming soon" && <img src={bg_img} alt="" className="absolute left-0 right-0 top-0 bottom-0 w-full " />}
+			{status === "comming soon" && <img src={bg_img} alt="" className="absolute left-0 right-0 top-0 bottom-0 w-full min-w-[247px] " />}
 
 			<div className="absolute bottom-0 left-0 right-0">
 				<CyberBlock shadowColor={color} className={cn('flex gap-2 pb-2  items-center  ', isFullMode ? "justify-start" : "justify-center")} isFullMode={isFullMode}>
