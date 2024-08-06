@@ -142,7 +142,7 @@ const List = ({ title, items, isMintable = false, color }: ListProps) => {
 
           </div>
           <div className="w-full h-px bg-[#00FFD3]" />
-          <p className="whitespace-nowrap text-bold text-basic text-yellow font-bold cursor-pointer">[ MINT ALL ]</p>
+          <p className={cn("whitespace-nowrap text-bold text-basic  font-bold cursor-pointer", isMintable ? "text-yellow" : "text-[#9D9D9D]")}>[ MINT ALL ]</p>
           <div className="w-4 h-px bg-[#00FFD3]" />
 
         </div>
@@ -162,7 +162,7 @@ const List = ({ title, items, isMintable = false, color }: ListProps) => {
   )
 }
 
-export const Rewards = () => {
+export const Rewards = ({activeWallet}:{activeWallet:string}) => {
   const { runner, setRunner } = useContractStore();
   const [items, setItems] = useState<Item[]>([]);
   const { openModal } = useModal();
@@ -233,8 +233,8 @@ export const Rewards = () => {
         <span className="text-sm text-yellow inline lg:hidden">[ MINT ALL ]</span>
       </h2>
       <div className="mt-4 flex-col gap-6 mb-1 hidden lg:flex">
-        <List title='Buildings' items={items} />
-        <List title='Runner2060' items={items} color={"#FFF600"} />
+        <List isMintable={Boolean(activeWallet)} title='Buildings' items={items} />
+        <List isMintable={Boolean(activeWallet)} title='Runner2060' items={items} color={"#FFF600"} />
       </div>
 
       <div className="block lg:hidden">

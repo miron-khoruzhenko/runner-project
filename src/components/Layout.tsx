@@ -9,7 +9,7 @@ import Projects from './Projects/Projects';
 import { Referral } from './Referral';
 import { Rewards } from './Rewards';
 
-export default function Layout() {
+export default function Layout({ activeWallet }: { activeWallet: string }) {
   const { walletAddress, connectWallet } = useWallet();
 
   return (
@@ -29,7 +29,7 @@ export default function Layout() {
               </div>
             </div>
             <Banners />
-            <Rewards />
+            <Rewards activeWallet={activeWallet} />
             <Assets />
           </div>
         </main>

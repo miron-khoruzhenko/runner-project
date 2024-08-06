@@ -24,17 +24,20 @@ const queryClient = new QueryClient();
 const AppWrapper = () => {
   const [isTelegram, setIsTelegram] = useState<boolean>(false);
 
+	const [activeWallet, setActiveWallet] = useState('')
+
+
   if (isTelegram) {
     return (
       <div className="bg-background min-h-screen overflow-x-hidden">
         <Routes>
-          <Route path="/" element={<TelegramHome />} />
-          <Route path="/box/:id" element={<TelegramBoxesPage />} />
-          <Route path="/confirm/:type" element={<TelegramConfirmPage />} />
-          <Route path="/rank" element={<TelegramRanking />} />
-          <Route path="/referral" element={<TelegramReferral />} />
-          <Route path="/tasks" element={<TelegramMissions />} />
-          <Route path="/profile" element={<TelegramProfile />} />
+          <Route path="/tg/" element={<TelegramHome />} />
+          <Route path="/tg/box/:id" element={<TelegramBoxesPage />} />
+          <Route path="/tg/confirm/:type" element={<TelegramConfirmPage />} />
+          <Route path="/tg/rank" element={<TelegramRanking />} />
+          <Route path="/tg/referral" element={<TelegramReferral />} />
+          <Route path="/tg/tasks" element={<TelegramMissions />} />
+          <Route path="/tg/profile" element={<TelegramProfile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
@@ -45,12 +48,20 @@ const AppWrapper = () => {
     <div className="bg-background min-h-screen flex flex-col h-full overflow-auto  overflow-x-hidden">
       <div className={`flex-1 flex flex-col`}>
         {/* <Header /> */}
-        <CustomHeader />
+        <CustomHeader {...{activeWallet, setActiveWallet}} />
         <NavBar />
         <main className="flex-1 h-full">
           <Routes>
-            <Route path="/" element={<MainPage />} />
+            <Route path="/" element={<MainPage activeWallet={activeWallet} />} />
             <Route path="/rank" element={<Rank />} />
+            <Route path="/tg/" element={<TelegramHome />} />
+            <Route path="/tg/box/:id" element={<TelegramBoxesPage />} />
+            <Route path="/tg/confirm/:type" element={<TelegramConfirmPage />} />
+            <Route path="/tg/rank" element={<TelegramRanking />} />
+            <Route path="/tg/referral" element={<TelegramReferral />} />
+            <Route path="/tg/tasks" element={<TelegramMissions />} />
+            <Route path="/tg/profile" element={<TelegramProfile />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

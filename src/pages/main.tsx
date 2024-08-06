@@ -9,7 +9,7 @@ import Projects from "../components/Projects/Projects";
 
 // import img from '../'
 
-export default function MainPage() {
+export default function MainPage({ activeWallet}:{activeWallet: string}) {
   const [isFullMode, setIsFullMode] = useState(false)
 
   return (
@@ -25,7 +25,7 @@ export default function MainPage() {
         </div>
       </div>
       <Banners />
-      <Rewards />
+      <Rewards activeWallet={activeWallet} />
       <Assets />
     </div>
   );

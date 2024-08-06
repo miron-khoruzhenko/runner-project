@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { twMerge as cn } from "tailwind-merge"
-import { useState } from "react"
+import { act, useState } from "react"
 import { Modal } from "../../context/modals/Modal"
 
 import NotificationBlock from "./Blocks/NotificationBlock"
@@ -21,10 +21,18 @@ import CyberButton from "./Buttons/CyberBtn"
 
 
 
-const CustomHeader = () => {
+const CustomHeader = ({
+	activeWallet,
+	setActiveWallet
+}:
+{
+	activeWallet: string,
+	setActiveWallet: React.Dispatch<React.SetStateAction<string>>
+}) => {
 	const [isTgLogged, setIsTgLogged] = useState(false)
-	const [activeWallet, setActiveWallet] = useState('')
 	const [isModalOpen, setIsModalOpen] = useState(false)
+
+	const [notSupportedModal, setNotSupportedModal] = useState(true)
 
 	const [walletNotSupportedModal, setWalletNotSupportedModal] = useState(true)
 
@@ -48,7 +56,7 @@ const CustomHeader = () => {
 			</header>
 			<NotficationModal isOpen={isModalOpen} />
 			
-			<NotSupported isOpen={true} />
+			<NotSupported isOpen={notSupportedModal} onClose={()=>setNotSupportedModal(false)} />
 			
 			</>
 		)

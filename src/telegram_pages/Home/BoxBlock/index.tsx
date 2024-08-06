@@ -14,7 +14,7 @@ const BoxBlock = ({ img, title, color }: { img: string, title: string, color: st
 			<div className="absolute bottom-0 left-0 right-0 z-20">
 				<ComplexBlock stickColor={color} isStraightBottom className='' >
 					<div className="p-[10px]">
-						<Link to={`/box/${title.toLowerCase()}`}>
+						<Link to={`/tg/box/${title.toLowerCase()}`}>
 							<CyberButton title="get the pass" className='px-5 py-[5px] text-sm uppercase font-bold' />
 						</Link>
 					</div>
