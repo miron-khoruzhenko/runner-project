@@ -74,7 +74,7 @@ const fakeDB = [
 
 const Projects = ({isFullMode}:{isFullMode:boolean}) => {
   return (
-    <ul className={cn("gap-6 h-full overflow-scroll lg:overflow-hidden", isFullMode ? "grid grid-cols-6 " : "flex " )}>
+    <ul className={cn("gap-6 h-full overflow-scroll ", isFullMode ? "grid grid-cols-6 " : "flex " )}>
       {fakeDB.map((project, index) => (
         <li className={cn("flex-1 ", (index === 0 || index === 1) ?  "col-span-3" : 'col-span-2', isFullMode? "min-h-[150px]" : "")} key={project.index}>
           <ProjectItem {...project} isFullMode={isFullMode} />
