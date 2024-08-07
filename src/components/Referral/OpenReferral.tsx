@@ -91,7 +91,7 @@ export const CyberBlockStick = ({ stickColor, position }: {stickColor?:string, p
 			boxShadow: `0px 0px 15px 1px ${stickColor ? stickColor : '#FFF600'}`,
 			backgroundColor: stickColor ? stickColor : '#FFF600'
 		}}
-		className={cn("h-px  absolute left-1/2 -translate-x-1/2 w-[55%]", position === 'top' ? "top-1" : "bootom-0")}></div>
+		className={cn("h-px  absolute left-1/2 -translate-x-1/2 w-[55%]", position === 'top' ? "top-1.5" : "bottom-1.5")}></div>
 	)
 }
 
