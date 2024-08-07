@@ -18,8 +18,8 @@ export default function MainPage({ activeWallet }: { activeWallet: string }) {
       setScale(0.9)
     } else if (window.innerWidth < 1024) {
       setScale(0.8)
-    }else{
-      // setScale(0.7)
+    }else if (window.innerWidth < 768) {
+      setScale(1)
     }}
   , [])
 
@@ -28,17 +28,22 @@ export default function MainPage({ activeWallet }: { activeWallet: string }) {
     <div
       className="pl-6 lg:pl-[10%] p-6 w-full flex flex-col gap-6">
       <div 
-        style={{ transform: `scale(${scale})` }}
+        // style={{ transform: `scale(${scale})` }}
 
-      className="flex flex-col lg:flex-row  ">
+      className="flex flex-col lg:flex-row gap-6  ">
         <div
+          // style={{ transform: `scale(${scale})` }}
 
-          className="flex flex-col w-full md:3/5 lg:w-4/5 gap-6 min-h-full">
+          className="flex flex-col w-full  lg:w-[calc(100%-350px-1.5rem)] gap-6 min-h-full">
           <Stats />
           <Projects isFullMode={isFullMode} />
         </div>
-        <div className="w-full md:w-3/5 lg:w-1/5 min-w-[250px] flex-1 flex justify-center items-center">
+        <div 
+        // style={{ transform: `scale(${scale})` }}
+        
+        className="w-full min-w-[350px] max-w-[600px] mx-auto flex-1 flex justify-center items-center">
           {/* <Referral /> */}
+          
           <OpenReferral isFullMode={isFullMode} />
         </div>
       </div>
