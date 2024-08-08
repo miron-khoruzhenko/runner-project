@@ -3,7 +3,7 @@ import { twMerge as cn } from "tailwind-merge"
 
 const TelegramNavbar = () => {
 	return (
-		<nav className='fixed bottom-0 left-0 bg-background px-[25px] py-5 block w-full'>
+		<nav className='fixed bottom-0 left-0 bg-background px-[25px] py-3 block w-full'>
 			<ul className=" bg-primaryZinc px-5 py-3 w-full rounded-[20px] flex justify-between">
 				{
 					navbar_items.map((item) => {

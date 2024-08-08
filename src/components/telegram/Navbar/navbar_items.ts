@@ -9,31 +9,31 @@ const navbar_items = [
 		id: 0,
 		name: 'Home',
 		icon: icon1,
-		href: '/tg/'
+		href: '/'
 	},
 	{
 		id: 1,
 		name: 'Rank',
 		icon: icon2,
-		href: '/tg/rank'
+		href: '/rank'
 	},
 	{
 		id: 2,
 		name: 'Referrals',
 		icon: icon3,
-		href: '/tg/referral'
+		href: '/referral'
 	},
 	{
 		id: 3,
 		name: 'Tasks',
 		icon: icon4,
-		href: '/tg/tasks'
+		href: '/tasks'
 	},
 	{
 		id: 4,
 		name: 'Profile',
 		icon: icon5,
-		href: '/tg/profile'
+		href: '/profile'
 	}
 ]
 

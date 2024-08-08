@@ -130,9 +130,9 @@ export const Assets = () => {
 
   const [coinBalances, setCoinBalances] = useState<CoinBalances>({});
 
-  useEffect(() => {
-    setCurrentArray(fakeDB[activeCategory]);
-  }, [activeCategory]);
+  // useEffect(() => {
+  //   setCurrentArray(fakeDB[activeCategory]);
+  // }, [activeCategory]);
 
   useEffect(() => {
     const getAssetsData = async () => {
@@ -161,8 +161,8 @@ export const Assets = () => {
 
   return (
     <div className="p-4 w-full bg-[#1B1E20] rounded-lg">
-      <h1 className="text-white font-bold text-2xl">My Assets</h1>
-      <div className="mt-4 flex flex-col gap-6 hidden lg:block">
+      <h1 className="text-white font-bold text-2xl">Rewards</h1>
+      <div className="mt-4 flex-col gap-6 hidden lg:flex ">
         <List title="Runner2060" items={items} />
       </div>
 
@@ -181,8 +181,39 @@ export const Assets = () => {
         </div>
 
         {/* <div className="grid grid-cols-3 gap-3 overflow-x-scroll"> */}
-        <div className="grid grid-flow-col auto-cols-max grid-rows-2 gap-3 overflow-x-auto mt-4 pb-4">
-          {currentArray.map((item, index) => (
+        {/*<div className="grid grid-flow-col auto-cols-max grid-rows-2 gap-3 overflow-x-auto mt-4 pb-4">
+          {fakeDB[activeCategory].map((item, index) => (
+            <div key={item.index} className="bg-[#282B2C] relative selection:rounded-lg flex flex-row gap-3 p-3 justify-center items-center rounded-md">
+              <div className="w-8 overflow-hidden">
+                <img src={item.img} alt={item.name} className="w-8" />
+              </div>
+
+              <div className="">
+                <p className="text-white text-sm">{item.name}</p>
+                <p className="text-[#A3AED0] text-[10px]">{item.type}</p>
+              </div>
+
+            </div>
+          ))} 
+        </div>*/}
+          {<ShowItems activeCategory={activeCategory} />}
+      </div>
+    </div>
+  );
+};
+
+
+const ShowItems = ({activeCategory} : {activeCategory: string}) => {
+  const parentDiv = document.getElementById('element_with_clones');
+
+  // useEffect(()=>{
+  //   while (parentDiv?.children && parentDiv?.children.length > 1)
+  //     parentDiv?.children[0].remove();
+  // }, [activeCategory])
+
+  return(
+    <div id="element_with_clones" className="grid grid-flow-col auto-cols-max grid-rows-2 gap-3 overflow-x-auto mt-4 pb-4">
+          {fakeDB[activeCategory].map((item, index) => (
             <div key={item.index} className="bg-[#282B2C] relative selection:rounded-lg flex flex-row gap-3 p-3 justify-center items-center rounded-md">
               <div className="w-8 overflow-hidden">
                 <img src={item.img} alt={item.name} className="w-8" />
@@ -196,7 +227,5 @@ export const Assets = () => {
             </div>
           ))}
         </div>
-      </div>
-    </div>
-  );
-};
+  )
+}

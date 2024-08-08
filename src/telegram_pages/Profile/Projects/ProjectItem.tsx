@@ -46,7 +46,7 @@ const ProjectItem = (
 			{(status === "connected" || status === "disconnected") &&
 				<>
 					<div className="p-4 flex justify-start items-center gap-3 z-20">
-						<div className="bg-[#020F1B] size-12 rounded-[16px] flex justify-center items-center ">
+						<div className="bg-[#020F1B] size-8 md:size-12 rounded-[16px] flex justify-center items-center ">
 							<img src={icon_img} alt="" className="" />
 						</div>
 						<h3 className="text-2xl font-bold text-white whitespace-nowrap">{title}</h3>
@@ -60,9 +60,9 @@ const ProjectItem = (
 
 			<div className="absolute bottom-0 left-0 right-0">
 				<CyberBlock shadowColor={color} className={cn('flex gap-2 pb-2  items-center  ', isFullMode ? "justify-start" : "justify-center")} isFullMode={isFullMode}>
-					{(status === "connected" || status === "disconnected") && <img src={tg_icon} alt="" className="" />}
+					{(status === "connected" || status === "disconnected") && <img src={tg_icon} alt="" className="size-5 lg:size-6" />}
 					<p
-						className="font-bold uppercase"
+						className="font-bold uppercase  text-sm lg:text-base whitespace-nowrap"
 						style={
 							status === "connected" ? { textShadow: '0px 0px 10px #C3FF48', color: '#C3FF48' } :
 								status === "disconnected" ? { textShadow: '0px 0px 10px #FF6262', color: '#FF6262' } :

@@ -22,7 +22,7 @@ import TelegramProfile from './telegram_pages/Profile';
 const queryClient = new QueryClient();
 
 const AppWrapper = () => {
-  const [isTelegram, setIsTelegram] = useState<boolean>(false);
+  const [isTelegram, setIsTelegram] = useState<boolean>(true);
 
 	const [isTgLogged, setIsTgLogged] = useState(false)
 
@@ -30,18 +30,27 @@ const AppWrapper = () => {
   
 
 
-  // if (isTelegram) {
-    if (window.location.pathname.includes('/tg/')) {
+  if (isTelegram) {
+    // if (window.location.pathname.includes('/tg/')) {
     return (
       <div className="bg-background min-h-screen overflow-x-hidden">
         <Routes>
-          <Route path="/tg/" element={<TelegramHome />} />
-          <Route path="/tg/box/:id" element={<TelegramBoxesPage />} />
+        {/* <Route path="/tg/" element={<TelegramHome />} /> */}
+          {/* <Route path="/tg/box/:id" element={<TelegramBoxesPage />} />
           <Route path="/tg/confirm/:type" element={<TelegramConfirmPage />} />
           <Route path="/tg/rank" element={<TelegramRanking />} />
           <Route path="/tg/referral" element={<TelegramReferral />} />
           <Route path="/tg/tasks" element={<TelegramMissions />} />
           <Route path="/tg/profile" element={<TelegramProfile />} />
+          <Route path="*" element={<NotFound />} /> */}
+
+          <Route path="/" element={<TelegramHome />} />
+          <Route path="/box/:id" element={<TelegramBoxesPage />} />
+          <Route path="/confirm/:type" element={<TelegramConfirmPage />} />
+          <Route path="/rank" element={<TelegramRanking />} />
+          <Route path="/referral" element={<TelegramReferral />} />
+          <Route path="/tasks" element={<TelegramMissions />} />
+          <Route path="/profile" element={<TelegramProfile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

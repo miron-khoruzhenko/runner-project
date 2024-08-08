@@ -12,26 +12,26 @@ import BoxBlock from './BoxBlock'
 
 const TelegramHome = () => {
 	return (
-		<div className='pt-[10px] px-[10px] pb-[110px] font-["Chakra_Petch"]'>
+		<div className='pt-[5px] px-[10px] pb-[100px] max-h-screen font-["Chakra_Petch"]'>
 			<div className="flex gap-[10px]">
 				<BlockWithIcon icon={icon1} title='2 124' />
 				<BlockWithIcon icon={icon2} title='trungmuoi_chanhday' />
 			</div>
 
-			<h1 className="text-white  my-[15px] font-bold text-[22px]">
+			<h1 className="text-white  my-2 font-bold text-[22px]">
 				Choose your <span className="text-yellow">Battle Passes</span>
 			</h1>
 
-			<div className="space-x-[10px] overflow-x-scroll whitespace-nowrap no-scrollbar mb-[15px] -mx-[10px]">
+			<div className="space-x-[10px] overflow-x-scroll whitespace-nowrap no-scrollbar  -mx-[10px]">
 				{box_block_items.map((item) => (
 					<BoxBlock {...item} key={item.id} />
 				))}
 			</div>
 
 			<ComplexBlock className=''>
-				<div className="flex flex-col items-center justify-center gap-5 py-[10px] font-['Pixel_Operator_HB']">
-					<h3 className="text-[22px]">You wanna play a little game</h3>
-					<img src={ship_img} alt="" className="" />
+				<div className="flex flex-col items-center justify-center gap-2 py-[10px] font-['Pixel_Operator_HB']">
+					<h3 className="text-xl">You wanna play a little game</h3>
+					<img src={ship_img} alt="" className="w-16 object-contain" />
 					<p className="text-[#A3AED0]">We'll be there soon</p>
 				</div>
 			</ComplexBlock>
@@ -60,8 +60,8 @@ const TelegramHome = () => {
 const BlockWithIcon = ({ icon, title }: { icon: string, title: string }) => {
 	return (
 		<div className="flex items-center p-[10px] bg-secondaryZinc font-['Chakra_Petch'] text-white font-bold rounded-[5px] w-full">
-			<img src={icon} alt="" className="mr-[10px]" />
-			<span className="text-sm text-ellipsis overflow-hidden">{title}</span>
+			<img src={icon} alt="" className="mr-[10px] size-5" />
+			<span className="text-xs text-ellipsis overflow-hidden">{title}</span>
 		</div>
 	)
 }

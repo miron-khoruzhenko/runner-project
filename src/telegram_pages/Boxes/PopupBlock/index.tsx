@@ -8,8 +8,13 @@ import ok_icon from '@tg/common/okayBtn.png'
 import CyberButton from '@/components/telegram/CyberComponents'
 
 
-const PopupBlock = ({ isModalOpen, setIsModalOpen, activeCoin }:
-	{ isModalOpen: boolean, setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>, activeCoin: { img: string, name: string } }
+const PopupBlock = ({ isModalOpen, setIsModalOpen, activeCoin, setOpenCompletedModal }:
+	{ 
+		isModalOpen: boolean, 
+		setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>, 
+		activeCoin: { img: string, name: string },
+		setOpenCompletedModal: React.Dispatch<React.SetStateAction<boolean>>
+	}
 ) => {
 	return (
 		<BottomSheet
@@ -54,7 +59,10 @@ const PopupBlock = ({ isModalOpen, setIsModalOpen, activeCoin }:
 				}} />
 			</CyberBlockBordered>
 
-			<CyberButton title='[ I made a payment ]' className='py-[15px] bg-black' />
+			<CyberButton onClick={()=>{
+				setOpenCompletedModal(true)
+				setIsModalOpen(false);
+			}} title='[ I made a payment ]' className='py-[15px] bg-black' />
 		</BottomSheet>
 	)
 }

@@ -4,18 +4,18 @@ import { Link } from "react-router-dom"
 
 const BoxBlock = ({ img, title, color }: { img: string, title: string, color: string, }) => {
 	return (
-		<div className="w-[160px] h-[220px] bg-secondaryZinc relative inline-block overflow-hidden">
+		<div className="w-[160px] h-[180px] bg-secondaryZinc relative inline-block overflow-hidden">
 			<h3 className="text-center text-white font-bold mt-[10px]">{title}</h3>
 
-			<div className="absolute left-1/2 bottom-0 -translate-x-1/2 w-full px-[10px] z-10">
-				<img src={img} alt="" className="" />
+			<div className="absolute left-1/2 bottom-0 -translate-x-1/2 w-full px-[20px] z-10">
+				<img src={img} alt="" className="object-contain" />
 			</div>
 
 			<div className="absolute bottom-0 left-0 right-0 z-20">
 				<ComplexBlock stickColor={color} isStraightBottom className='' >
-					<div className="p-[10px]">
-						<Link to={`/tg/box/${title.toLowerCase()}`}>
-							<CyberButton title="get the pass" className='px-5 py-[5px] text-sm uppercase font-bold' />
+					<div className="p-[8px]">
+						<Link to={`/box/${title.toLowerCase()}`}>
+							<CyberButton title="get the pass" className='px-5 py-[3px] text-sm uppercase font-bold' />
 						</Link>
 					</div>
 				</ComplexBlock>

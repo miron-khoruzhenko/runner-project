@@ -21,7 +21,8 @@ const TelegramBoxesPage = () => {
 	const [amount, setAmount] = useState(0)
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [isCautionModalOpen, setIsCautionModalOpen] = useState(true)
-	const [isKYCRequired, setIsKYCRequired] = useState(false)
+	const [isCompletedModalOpen, setIsCompletedModalOpen] = useState(false)
+	const [isKYCRequired, setIsKYCRequired] = useState(true)
 	const [confirm, setConfirm] = useState(false)
 
 	//DOC: DEV
@@ -55,7 +56,7 @@ const TelegramBoxesPage = () => {
 
 			{isKYCRequired ?
 				<CyberButton
-					onClick={() => setIsModalOpen(true)}
+					onClick={() => setIsKYCRequired(false)}
 					title='[ KYC required ]'
 					outerClassName='my-[15px] h-[60px] bg-[#ECB52E]'
 					className='bg-black text-[#ECB52E] py-[15px] transition-transform active:-translate-y-[2px] active:-translate-x-[2px] uppercase'
@@ -71,43 +72,46 @@ const TelegramBoxesPage = () => {
 
 			<p className="text-sm text-grey text-center"><span className="underline cursor-pointer">Terms</span> and <span className="underline cursor-pointer">Privacy policy</span> </p>
 
-			<PopupBlock isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} activeCoin={activeCoin} />
+			<PopupBlock
+				isModalOpen={isModalOpen}
+				setIsModalOpen={setIsModalOpen}
+				activeCoin={activeCoin}
+				setOpenCompletedModal={setIsCompletedModalOpen}
+			/>
 
-			{
-				modalType === 0 ?
-					<Modal open={isCautionModalOpen} setOpen={setIsCautionModalOpen}  >
-						<div className="">
-							<h3 className=" mb-5 text-[19px] font-bold text-center">Important</h3>
-							<p className="text-xs text-grey">
-								This privacy policy ("Policy") informs you of your choices and our practices in relation to your Personal Information (as defined below). As this Policy constitutes an integral part of the Terms of Use, capitalised terms used in this Policy have the same meanings as those defined in Terms of Use. Play2fun is the data controller regarding the personal data processed within the framework of this Policy. Play2fun is committed to protecting and respecting the privacy of its users and ensures their security when accessing the Platform and using the Services. This Policy is intended to help you to understand what data and for which purposes we collect, how collected data is processed and protected. Play2fun consistently upholds Policy and other documents updated and undergoes regular modifications to ensure their relevance and compliance with laws, regulations and app stores requirements.
-							</p>
-							<CyberBlock className='py-[7px] mt-5 mb-[15px]' >
-								<label className='flex items-center justify-start gap-[10px]'>
+			<Modal open={isCautionModalOpen} setOpen={setIsCautionModalOpen}  >
+				<div className="">
+					<h3 className=" mb-5 text-[19px] font-bold text-center">Important</h3>
+					<p className="text-xs text-grey">
+						This privacy policy ("Policy") informs you of your choices and our practices in relation to your Personal Information (as defined below). As this Policy constitutes an integral part of the Terms of Use, capitalised terms used in this Policy have the same meanings as those defined in Terms of Use. Play2fun is the data controller regarding the personal data processed within the framework of this Policy. Play2fun is committed to protecting and respecting the privacy of its users and ensures their security when accessing the Platform and using the Services. This Policy is intended to help you to understand what data and for which purposes we collect, how collected data is processed and protected. Play2fun consistently upholds Policy and other documents updated and undergoes regular modifications to ensure their relevance and compliance with laws, regulations and app stores requirements.
+					</p>
+					<CyberBlock className='py-[7px] mt-5 mb-[15px]' >
+						<label className='flex items-center justify-start gap-[10px]'>
 
-									<input type="checkbox" name="" id=""
-										className={`accent-transparent border rounded border-[#00FFD3] size-6 aspect-square relative after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-3/4 after:h-2 after:w-3 after:border-b-2 after:border-l-2 after:border-[#FFF600] after:-rotate-45 after:hidden checked:after:block`}
-										style={{
-											MozAppearance: 'initial'
-										}} />
-									<p className="text-xs">I hereby confirm that I have read and agree to the terms of the privacy policy.</p>
-								</label>
-							</CyberBlock>
-							<CyberButton title='[ go to assets ]' className='bg-black uppercase py-[13px] text-sm' />
-						</div>
-					</Modal>
-					:
-					<Modal open={isCautionModalOpen} setOpen={setIsCautionModalOpen}  >
-						<div className="text-center">
-							<img src={modal_bg} alt="" className="" />
-							<h3 className=" mb-[5px] mt-[25px] text-[19px] font-bold text-center">Added Battle Passes</h3>
-							<p className="text-xs text-grey mb-[25px]">
-							New battle passes added to assets
-							</p>
-							<CyberButton title='[ go to assets ]' className='bg-black uppercase py-[13px] text-sm' />
-						</div>
-					</Modal>
+							<input type="checkbox" name="" id=""
+								className={`accent-transparent border rounded border-[#00FFD3] size-6 aspect-square relative after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-3/4 after:h-2 after:w-3 after:border-b-2 after:border-l-2 after:border-[#FFF600] after:-rotate-45 after:hidden checked:after:block`}
+								style={{
+									MozAppearance: 'initial'
+								}} />
+							<p className="text-xs">I hereby confirm that I have read and agree to the terms of the privacy policy.</p>
+						</label>
+					</CyberBlock>
+					<CyberButton title='[ go to assets ]' className='bg-black uppercase py-[13px] text-sm' />
+				</div>
+			</Modal>
 
-			}
+			{isCompletedModalOpen && <Modal open={isCompletedModalOpen} setOpen={setIsCompletedModalOpen}  >
+				<div className="text-center">
+					<img src={modal_bg} alt="" className="" />
+					<h3 className=" mb-[5px] mt-[25px] text-[19px] font-bold text-center">Added Battle Passes</h3>
+					<p className="text-xs text-grey mb-[25px]">
+						New battle passes added to assets
+					</p>
+					<Link to='/profile' className="">
+						<CyberButton title='[ go to assets ]' className='bg-black uppercase py-[13px] text-sm' />
+					</Link>
+				</div>
+			</Modal>}
 
 		</div>
 	)
