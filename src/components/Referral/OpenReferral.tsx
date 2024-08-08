@@ -33,7 +33,7 @@ const handleSubmit = (e:any) => {
 	}
   return (
     <CyberBlock className="text-white flex flex-col items-start justify-center gap-4">
-      <GlowingCross className="mt-2 absolute right-2 lg:relative" />
+      <GlowingCross className="mt-2 absolute right-3 top-2 lg:right-auto lg:left-4 lg:top-4" />
       <h3 className="font-bold text-base lg:text-2xl mb-2">Invite a friend and get <span className="text-yellow">500 gold</span></h3>
       <p className="text-grey text-xs lg:text-sm">Give a friend promo code on 500 gold and you&apos;ll get 500 gold off your next game.</p>
       {/* {IsinputActive ?  */}

@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import banner from '@/assets/common/banner.png'
+
 export const Banners = () => {
   const banners = [
     {
@@ -12,7 +14,8 @@ export const Banners = () => {
       case 1:
         return (
           <Link to={banners[0].redirect || '/'} target="_blank" rel="noopener noreferrer">
-            <img alt="" className="w-full h-full object-cover" src={banners[0].image} width={800} height={600} />
+            <img alt="" className="w-full h-full object-cover hidden lg:block" src={banners[0].image} width={800} height={600} />
+            <img alt="" className="w-full h-min object-contain block lg:hidden" src={banner}/>
           </Link>
         );
       case 2:
@@ -81,7 +84,7 @@ export const Banners = () => {
   };
   
   return (
-    <div className={`w-full h-48 h-${banners.length ? '48' : '0'} flex gap-6`}>
+    <div className={`w-full lg:h-48 lg:h-${banners.length ? '48' : '0'} flex gap-6`}>
       {renderImages()}
     </div>
   )
