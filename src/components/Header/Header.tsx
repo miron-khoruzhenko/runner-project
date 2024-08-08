@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { twMerge as cn } from "tailwind-merge"
-import { act, useState } from "react"
+import { act, useEffect, useState } from "react"
 import { Modal } from "../../context/modals/Modal"
 
 import NotificationBlock from "./Blocks/NotificationBlock"
@@ -23,19 +23,26 @@ import CyberButton from "./Buttons/CyberBtn"
 
 const CustomHeader = ({
 	activeWallet,
-	setActiveWallet
+	setActiveWallet,
+
+	isTgLogged,
+	setIsTgLogged,
 }:
 {
 	activeWallet: string,
-	setActiveWallet: React.Dispatch<React.SetStateAction<string>>
+	setActiveWallet: React.Dispatch<React.SetStateAction<string>>,
+	isTgLogged: boolean,
+	setIsTgLogged: React.Dispatch<React.SetStateAction<boolean>>,
 }) => {
-	const [isTgLogged, setIsTgLogged] = useState(false)
+	// const [isTgLogged, setIsTgLogged] = useState(false)
 	const [isModalOpen, setIsModalOpen] = useState(false)
-
 	const [notSupportedModal, setNotSupportedModal] = useState(true)
-
 	const [walletNotSupportedModal, setWalletNotSupportedModal] = useState(true)
 
+	useEffect(()=>{
+		if(!isTgLogged)
+			setActiveWallet('')
+	}, [isTgLogged, setActiveWallet])
 
 	const windowSize = window.innerWidth
 
@@ -71,8 +78,8 @@ const CustomHeader = ({
 
 			<div className="flex items-center gap-3 bg-[#1B1E20] rounded-lg  p-3">
 				<NotificationBlock />
-				<TelegramLoginButton isLogged={isTgLogged} onClick={() => { setIsTgLogged(!isTgLogged) }} />
-				<ConnectWalletBlock activeWallet={activeWallet} setActiveWallet={setActiveWallet} />
+				<TelegramLoginButton setIsLogged={setIsTgLogged} isLogged={isTgLogged} onClick={() => { setIsTgLogged(!isTgLogged) }} />
+				{isTgLogged && <ConnectWalletBlock activeWallet={activeWallet} setActiveWallet={setActiveWallet} />}
 				<ProfileBlock icon={activeWallet} setActiveWallet={setActiveWallet} />
 				{activeWallet && <ListBlock />}
 			</div>

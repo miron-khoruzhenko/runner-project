@@ -82,11 +82,12 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ columnNames, itemsPerPage, ti
 			<div className="flex flex- justify-end mb-4">
 				<h2 className="text-base lg:text-xl text-white font-semibold mb-4">{title}</h2>
 				<div 
-					className={cn("z-[10] cursor-pointer flex items-center justify-center relative ml-auto rounded-lg p-2 lg:p-3 hover:bg-zinc-800 bg-primaryZinc ", (isSearchActive ? 'flex w-full ' : 'aspect-square') )}
-					onClick={() => setIsSearchActive(!isSearchActive)}
+					className={cn("z-[10] cursor-pointer flex items-center justify-center relative ml-auto rounded-lg hover:bg-zinc-800 bg-primaryZinc ", (isSearchActive ? 'flex w-full ' : 'aspect-square') )}
 				>
-					{isSearchActive && <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" className='text-white bg-transparent outline-none w-full' placeholder='Search player' />}
-					<div className="aspect-square  rounded-lg " >
+					{isSearchActive && <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" className='px-4 text-white bg-transparent outline-none w-full' placeholder='Search player' />}
+					<div 
+						onClick={() => {setIsSearchActive(!isSearchActive)}}
+						className="aspect-square  rounded-lg  p-2 lg:p-3 " >
 						<img src={'/nav-icons/search.svg'} alt={'search'} className='size-3 lg:size-4' />
 					</div>
 				</div>

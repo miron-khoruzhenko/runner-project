@@ -32,7 +32,7 @@ const handleSubmit = (e:any) => {
 		}
 	}
   return (
-    <CyberBlock className="text-white">
+    <CyberBlock className="text-white flex flex-col items-start justify-center gap-4">
       <GlowingCross className="mt-2 absolute right-2 lg:relative" />
       <h3 className="font-bold text-base lg:text-2xl mb-2">Invite a friend and get <span className="text-yellow">500 gold</span></h3>
       <p className="text-grey text-xs lg:text-sm">Give a friend promo code on 500 gold and you&apos;ll get 500 gold off your next game.</p>
@@ -73,12 +73,12 @@ const handleSubmit = (e:any) => {
             </CyberButton>}
         </div>}
 				
-				<CyberButtonDashed isYellow className={cn("h-[55px] hidden lg:block", isFullMode ? "mb-4" : "mt-4")} pseudoStyle="bg-white">
+				{/* <CyberButtonDashed isYellow className={cn("h-[55px] hidden lg:block", isFullMode ? "mb-4" : "mt-4")} pseudoStyle="bg-white">
             <span className="mr-2 truncate px-1 text-yellow">My referral</span>
             <div className="block min-w-8">
               <img src={'/referralIcon.svg'} alt={'copy icon'} width={32} height={32} />
             </div>
-          </CyberButtonDashed>
+          </CyberButtonDashed> */}
     </CyberBlock>
   )
 }
@@ -91,16 +91,16 @@ export const CyberBlockStick = ({ stickColor, position }: {stickColor?:string, p
 			boxShadow: `0px 0px 15px 1px ${stickColor ? stickColor : '#FFF600'}`,
 			backgroundColor: stickColor ? stickColor : '#FFF600'
 		}}
-		className={cn("h-px  absolute left-1/2 -translate-x-1/2 w-[55%]", position === 'top' ? "top-1.5" : "bottom-1.5")}></div>
+		className={cn("h-px  absolute left-1/2 -translate-x-1/2 w-[55%]", position === 'top' ? "top-1.5" : "bottom-3.5")}></div>
 	)
 }
 
 export const CyberBlock = ({ children, className, shadowColor: stickColor }: {shadowColor?:string}& React.HTMLAttributes<HTMLDivElement>) => {
 	return (
-		<div className="relative h-min w-full">
+		<div className="relative min-h-full h-full pb-2 w-full ">
 
 			<CyberBlockStick stickColor={stickColor} position="top" />
-			<div className={"bg-secondaryZinc w-full h-full cool_clip py-[5%] px-4 rounded-lg " + className}>
+			<div className={"bg-secondaryZinc w-full min-h-full cool_clip py-[5%] px-4 rounded-lg " + className}>
 				{children}
 			</div>
 			<CyberBlockStick stickColor={stickColor} position="bottom" />

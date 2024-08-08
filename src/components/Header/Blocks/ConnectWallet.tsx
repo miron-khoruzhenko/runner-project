@@ -42,8 +42,8 @@ const ConnectWalletBlock = ({ activeWallet, setActiveWallet }: { activeWallet: s
 			</CyberButton>}
 
 
-			<Modal open={isWalletModalOpen} setOpen={setIsWalletModalOpen} >
-				<h3 className="text-lg font-bold uppercase lg:min-w-[600px] mb-6">Choose your preferred wallet</h3>
+			<Modal open={isWalletModalOpen} setOpen={setIsWalletModalOpen}>
+				<h3 className="text-lg font-bold uppercase  mb-6 text-center">Choose your preferred wallet</h3>
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 					{fakeDB.map(wallet => (
 						<div

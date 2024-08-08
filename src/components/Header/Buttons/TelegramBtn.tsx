@@ -6,7 +6,12 @@ import tg_icon_bubble from '../../../assets/navbar/tg_icon_bubble.svg'
 
 import PopupBlock from "../Blocks/Popup"
 
-const TelegramLoginButton = ({ onClick, isLogged }: { isLogged: boolean } & React.HTMLAttributes<HTMLDivElement>) => {
+const TelegramLoginButton = (
+	{ onClick, isLogged, setIsLogged }: 
+	{ 
+		isLogged: boolean 
+		setIsLogged: React.Dispatch<React.SetStateAction<boolean>>
+	} & React.HTMLAttributes<HTMLDivElement>) => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	if (isLogged) {
@@ -17,7 +22,7 @@ const TelegramLoginButton = ({ onClick, isLogged }: { isLogged: boolean } & Reac
 			>
 				<img src={tg_icon_bubble} alt="" className="" />
 				<p className="text-nowrap whitespace-nowrap text-sm font-['Roboto']">trungmuoi_chanhday</p>
-				<PopupBlock isOpen={isModalOpen}>
+				<PopupBlock onClick={()=>setIsLogged(false)} isOpen={isModalOpen}>
 					<div className="p-2 bg-[#1B1E20] rounded-lg ">
 						<p className="text-[#FF6262] text-sm select-none">Log out</p>
 					</div>

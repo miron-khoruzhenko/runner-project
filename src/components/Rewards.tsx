@@ -164,67 +164,93 @@ const List = ({ title, items, isMintable = false, color }: ListProps) => {
 
 export const Rewards = ({activeWallet}:{activeWallet:string}) => {
   const { runner, setRunner } = useContractStore();
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<Item[]>([
+    {
+      coins: 0,
+      img: "/coin.png",
+      name: "Coins",
+      amount: "0",
+      isMintable: false,
+      type: CoinTypes.COINS,
+    },
+    {
+      coins: 0,
+      img: "/l_coin.png",
+      name: "Coins",
+      amount: "0",
+      isMintable: false,
+      type: CoinTypes.COINS,
+    },
+    {
+      coins: 0,
+      img: "/devomon.png",
+      name: "Coins",
+      amount: "0",
+      isMintable: false,
+      type: CoinTypes.COINS,
+    },
+    
+  ]);
   const { openModal } = useModal();
   const [activeCategory, setActiveCategory] = useState("Buildings");
 
 
-  useEffect(() => {
-    const getItems = async () => {
-      try {
-        const response = await fetch(`https://satoshi-board-dev.web.app/runner/get-claimed-data?telegramId=${runner}`);
-        const data = await response.json();
-        if (!data.coins && !data.l_coins && data.coins !== 0) {
-          setRunner(null);
-          openModal('Error fetching data. User not found', "Error");
-        }
+  // useEffect(() => {
+  //   const getItems = async () => {
+  //     try {
+  //       const response = await fetch(`https://satoshi-board-dev.web.app/runner/get-claimed-data?telegramId=${runner}`);
+  //       const data = await response.json();
+  //       if (!data.coins && !data.l_coins && data.coins !== 0) {
+  //         setRunner(null);
+  //         openModal('Error fetching data. User not found', "Error");
+  //       }
 
-        const items: Item[] = [];
+  //       const items: Item[] = [];
 
-        // const coins = data.coins || 0;
+  //       // const coins = data.coins || 0;
 
-        // items.push({
-        //   coins,
-        //   img: "/coin.png",
-        //   name: "Coins",
-        //   amount: coins.toString(),
-        //   isMintable: coins > 0,
-        //   type: CoinTypes.COINS,
-        // });
+  //       // items.push({
+  //       //   coins,
+  //       //   img: "/coin.png",
+  //       //   name: "Coins",
+  //       //   amount: coins.toString(),
+  //       //   isMintable: coins > 0,
+  //       //   type: CoinTypes.COINS,
+  //       // });
 
-        coinsMap.forEach(coin => {
-          const amount = data[coin.type] || 0;
-          if (data[coin.type] > 0 && coin.type !== CoinTypes.COINS) {
-            items.push({
-              coins: 0,
-              img: coin.image,
-              name: coin.name,
-              amount: amount.toString(),
-              isMintable: amount > 0,
-              type: coin.type,
-              tokenId: coin.tokenId,
-            });
-          }
-        });
+  //       coinsMap.forEach(coin => {
+  //         const amount = data[coin.type] || 0;
+  //         if (data[coin.type] > 0 && coin.type !== CoinTypes.COINS) {
+  //           items.push({
+  //             coins: 0,
+  //             img: coin.image,
+  //             name: coin.name,
+  //             amount: amount.toString(),
+  //             isMintable: amount > 0,
+  //             type: coin.type,
+  //             tokenId: coin.tokenId,
+  //           });
+  //         }
+  //       });
 
-        setItems(items);
-      } catch (error) {
-        // const items: Item[] = [{
-        //   coins: 0,
-        //   img: "/coin.png",
-        //   name: "Coins",
-        //   amount: "0",
-        //   isMintable: false,
-        //   type: CoinTypes.COINS,
-        // }];
-        // setItems(items);
-      }
-    };
+  //       setItems(items);
+  //     } catch (error) {
+  //       // const items: Item[] = [{
+  //       //   coins: 0,
+  //       //   img: "/coin.png",
+  //       //   name: "Coins",
+  //       //   amount: "0",
+  //       //   isMintable: false,
+  //       //   type: CoinTypes.COINS,
+  //       // }];
+  //       // setItems(items);
+  //     }
+  //   };
 
-    if (runner) {
-      getItems();
-    }
-  }, [runner]);
+  //   if (runner) {
+  //     getItems();
+  //   }
+  // }, [runner]);
 
 
   return (

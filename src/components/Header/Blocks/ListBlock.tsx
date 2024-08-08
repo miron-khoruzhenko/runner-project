@@ -42,7 +42,10 @@ const ListBlock = () => {
 		>
 			<img src={activePopup.icon} alt="" className="" />
 			<p className="font-bold text-white">{activePopup.name}</p>
+			<div className="pr-2">
+
 			<div className="-rotate-[135deg] -mb-1 lg:rotate-45 lg:mb-1 size-3 border-r-[2px] border-b-[2px] border-[#A3AED0] "></div>
+			</div>
 			<PopupBlock isOpen={isModalOpen}>
 				<div className="flex flex-col gap-2">
 

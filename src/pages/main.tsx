@@ -9,7 +9,7 @@ import Projects from "../components/Projects/Projects";
 
 // import img from '../'
 
-export default function MainPage({ activeWallet }: { activeWallet: string }) {
+export default function MainPage({ activeWallet, isTgLogged=false }: { activeWallet: string, isTgLogged: boolean }) {
   const [isFullMode, setIsFullMode] = useState(false)
   const [scale, setScale] = useState(1)
 
@@ -26,22 +26,16 @@ export default function MainPage({ activeWallet }: { activeWallet: string }) {
   return (
     // <div className="pl-6 lg:pl-[7.5rem] p-6 w-full flex flex-col gap-6">
     <div
-      className="pl-6 lg:pl-[10%] p-6 w-full flex flex-col gap-6">
+      className="px-2 md:pl-6 lg:pl-[10%] md:p-6 w-full flex flex-col gap-4 lg:gap-6">
       <div 
         // style={{ transform: `scale(${scale})` }}
 
-      className="flex flex-col lg:flex-row gap-6  ">
-        <div
-          // style={{ transform: `scale(${scale})` }}
-
-          className="flex flex-col w-full  lg:w-[calc(100%-350px-1.5rem)] gap-6 min-h-full">
+      className="flex flex-col lg:flex-row gap-4 lg:gap-6  ">
+        <div className="flex flex-col w-full  lg:w-[calc(100%-400px-1.5rem)] gap-4 lg:gap-6 min-h-full">
           <Stats />
-          <Projects isFullMode={isFullMode} />
+          <Projects isFullMode={isFullMode} isTgLogged={isTgLogged} />
         </div>
-        <div 
-        // style={{ transform: `scale(${scale})` }}
-        
-        className="w-full min-w-[350px] max-w-[600px] mx-auto flex-1 flex justify-center items-center">
+        <div className="w-full md:min-w-[400px] max-w-[600px] mx-auto flex-1 flex justify-center items-center">
           {/* <Referral /> */}
           
           <OpenReferral isFullMode={isFullMode} />
@@ -49,7 +43,7 @@ export default function MainPage({ activeWallet }: { activeWallet: string }) {
       </div>
       <Banners />
       <Rewards activeWallet={activeWallet} />
-      <Assets />
+      {isTgLogged && <Assets />}
     </div>
   );
 }

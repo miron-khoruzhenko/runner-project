@@ -1,7 +1,7 @@
 import {  CyberBlockStick } from '../Referral/OpenReferral'
 
 import tg_icon from '../../assets/projects/telegram_icon.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { twMerge as cn } from 'tailwind-merge'
 interface ProjectItemProps {
@@ -12,6 +12,7 @@ interface ProjectItemProps {
 	color?: string,
 	statusProp?: string,
 	isFullMode?: boolean
+	isTgLogged: boolean
 }
 
 const ProjectItem = (
@@ -22,36 +23,47 @@ const ProjectItem = (
 		icon_img,
 		color,
 		statusProp = 'connected',
-		isFullMode = false
+		isFullMode = false,
+		isTgLogged
 	} : ProjectItemProps
 ) => {
 	const [status, setStatus] = useState(statusProp)
 
+	useEffect(()=>{
+		if (!isTgLogged && statusProp !== "comming soon")
+		{
+			setStatus('disconnected')
+		}else{
+			setStatus(statusProp)
+		}
+	}, [isTgLogged, statusProp])
+
 	return (
 		<div 
-			className='h-full relative rounded-lg bg-[#1B1E20] overflow-clip z-10 min-h-[220px] min-w-[247px] ' 
+			className={`h-full relative rounded-lg ${status === "comming soon" ? " overflow-visible " : " bg-[#1B1E20] overflow-clip "}  z-10 min-h-[220px] min-w-[160px] lg:min-w-[247px] ` }
 			// style={{background: `url(${bg_img}) right no-repeat, #1B1E20`, backgroundSize: 'contain'}}
 		>
 			{(status === "connected" || status === "disconnected") &&  
 			<>
 			<div className="p-4 flex justify-start items-center gap-3 z-20">
-				<div className="bg-[#020F1B] size-12 rounded-[16px] flex justify-center items-center ">
+				<div className="bg-[#020F1B] size-8 md:size-12 rounded-[16px] flex justify-center items-center ">
 					<img src={icon_img} alt="" className="" />
 				</div>
-				<h3 className="text-2xl font-bold text-white whitespace-nowrap">{title}</h3>
+				<h3 className="text-base md:text-2xl font-bold text-white whitespace-nowrap">{title}</h3>
 			</div>
 			<img src={bg_img} alt="" className="absolute right-0 top-0 -z-10"  />
 			<div className="absolute -right-1 top-1/2 -translate-y-1/2 size-1 -z-20 " style={{
 				boxShadow: '0px 0px 250px 120px ' + color,
 			}}></div>
 			</>}
-			{status === "comming soon" && <img src={bg_img} alt="" className="absolute left-0 right-0 top-0 bottom-0 w-full min-w-[247px] " />}
+
+			{status === "comming soon" && <img src={bg_img} alt="" className="absolute left-0 right-0 top- bottom-0 w-full min-w-[247px] " />}
 
 			<div className="absolute bottom-0 left-0 right-0">
 				<CyberBlock shadowColor={color} className={cn('flex gap-2 pb-2  items-center  ', isFullMode ? "justify-start" : "justify-center")} isFullMode={isFullMode}>
-					{(status === "connected" || status === "disconnected") && <img src={tg_icon} alt="" className="" />}
+					{(status === "connected" || status === "disconnected") && <img src={tg_icon} alt="" className="size-5 lg:size-6" />}
 					<p 
-						className="font-bold uppercase"
+						className="font-bold uppercase text-sm lg:text-base whitespace-nowrap"
 						style={
 							status === "connected" ? {textShadow: '0px 0px 10px #C3FF48', color: '#C3FF48'} :
 							status === "disconnected" ? {textShadow: '0px 0px 10px #FF6262', color: '#FF6262'} :

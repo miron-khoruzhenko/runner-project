@@ -14,6 +14,7 @@ const Footer = () => {
                                     width="181"
                                     height="57"
                                     decoding="async"
+                                    className="object-contain"
                                     style={{ color: 'transparent' }}
                                     src="/logo.6b781cb6.svg"
                                 />
