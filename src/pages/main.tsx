@@ -40,7 +40,7 @@ export default function MainPage({ activeWallet, isTgLogged=false }: { activeWal
       </div>
       <Banners />
       <Rewards activeWallet={activeWallet} />
-      {(isTgLogged || activeWallet) && <Assets />}
+      {(isTgLogged || activeWallet) && <Assets activeWallet={activeWallet} />}
     </div>
   );
 }

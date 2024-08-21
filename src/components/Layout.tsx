@@ -30,7 +30,7 @@ export default function Layout({ activeWallet }: { activeWallet: string }) {
             </div>
             <Banners />
             <Rewards activeWallet={activeWallet} />
-            <Assets />
+            <Assets activeWallet={activeWallet}/>
           </div>
         </main>
         <Footer />

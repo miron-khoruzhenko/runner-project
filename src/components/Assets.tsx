@@ -4,6 +4,8 @@ import { coinsMap } from "../constants/coins.map";
 
 import { twMerge as cn } from "tailwind-merge";
 
+import wallet_icon from '@assets/common/wallet.svg'
+
 interface ListProps {
   title: string;
   items: Item[];
@@ -100,9 +102,14 @@ const List = ({ title, items }: ListProps) => {
         <div className="flex gap-6 items-center">
           <div className="flex gap-1">
             <img onClick={() => setHidden((prev) => !prev)} className={hidden ? "transform rotate-180" : ''} src="/arrow-down.svg" width={24} height={24} alt="" />
-            <p className="text-bold text-basic">{title}</p>
+            <p className="text-bold text-basic cursor-pointer whitespace-nowrap">{title}</p>
           </div>
           <div className="w-full h-px bg-[#00FFD3]" />
+          {title === 'Battle Pass' && <div className="bg-[#292c2d] p-2 px-5 rounded text-white flex items-center justify-center gap-2">
+            <img src={wallet_icon} alt="" />
+            <span className="font-['Chakra_Petch']">@alikandrito</span>
+            </div>}
+          
         </div>
         {!hidden && (
           <ul className="flex gap-6 pb-4 scroll_bar overflow-y-clip overflow-x-scroll scrollbar-visible">
@@ -126,7 +133,7 @@ const List = ({ title, items }: ListProps) => {
   );
 };
 
-export const Assets = () => {
+export const Assets = ({activeWallet}:{activeWallet:string}) => {
   const [items, setItems] = useState<Item[]>([]);
   const [activeCategory, setActiveCategory] = useState("Battle Pass");
   const [currentArray, setCurrentArray] = useState<FakeDBItem[]>(fakeDB[activeCategory]);
@@ -166,7 +173,22 @@ export const Assets = () => {
     <div className="p-4 w-full bg-[#1B1E20] rounded-lg">
       <h1 className="text-white font-bold text-2xl">My Assets</h1>
       <div className="mt-4  flex-col gap-6 hidden lg:flex">
-        <List title="Runner2060" items={items} />
+        {
+          Object.keys(fakeDB).map((key, index) => {
+            if (!activeWallet && key === "Battle Pass") return null;
+            
+            return (<List key={index} title={key} items={
+              fakeDB[key].map((item) => ({
+                name: item.name,
+                type: item.type,
+                image: item.img,
+              }))
+            } />)
+          }
+          
+          )
+        }
+        {/* <List title="Runner2060" items={items} /> */}
       </div>
 
       <div className="block lg:hidden">

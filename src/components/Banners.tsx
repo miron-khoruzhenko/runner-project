@@ -15,7 +15,7 @@ export const Banners = () => {
         return (
           <Link className="w-full" to={banners[0].redirect || '/'} target="_blank" rel="noopener noreferrer">
             <img alt="" className="w-full h-full object-contain hidden lg:block" src={banners[0].image}  />
-            <img alt="" className="w-full h-min object-contain block lg:hidden" src={banner}/>
+            <img alt="" className="min-w-full  w-[calc(100vw-1.5rem)] aspect-[360/100] h-min object-contain block lg:hidden" src={banner}/>
           </Link>
         );
       case 2:
@@ -84,7 +84,7 @@ export const Banners = () => {
   };
   
   return (
-    <div className={`w-full  flex gap-6`}>
+    <div className={`min-w-full md:aspect-auto md:w-full  flex gap-6`}>
       {renderImages()}
     </div>
   )
